@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap - Seyyah-ı Diyar</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h1 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .login-button {
+            background: #3498db;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-button:hover {
+            background: #2980b9;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .login-footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Bölümü -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Seyyah-ı Diyar &trade;</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="index.html#destinations-section">Keşfedilecek Yerler</a></li>
+                <li><a href="login.html">Giriş Yap</a></li>
+                <li><a href="register.html">Kayıt Ol</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Ana İçerik -->
+    <main>
+        <div class="login-container">
+            <div class="login-header">
+                <h1>Giriş Yap</h1>
+                <p>Seyyah-ı Diyar'a hoş geldiniz!</p>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-posta</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError">Geçerli bir e-posta adresi giriniz.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Şifre</label>
+                    <input type="password" id="password" name="password" required>
+                    <div class="error-message" id="passwordError">Şifreniz en az 6 karakter olmalıdır.</div>
+                </div>
+
+                <button type="submit" class="login-button">Giriş Yap</button>
+            </form>
+
+            <div class="login-footer">
+                <p>Hesabınız yok mu? <a href="register.html">Kayıt Ol</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Bölümü -->
+    <footer>
+        <p>&copy; 2025 Seyyah-ı Diyar. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            
+            // Form doğrulama
+            let isValid = true;
+            
+            if (!email.includes('@')) {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+            
+            if (password.length < 6) {
+                passwordError.style.display = 'block';
+                isValid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+            
+            if (isValid) {
+                // Burada giriş işlemleri yapılacak
+                alert('Giriş başarılı!');
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html> 
