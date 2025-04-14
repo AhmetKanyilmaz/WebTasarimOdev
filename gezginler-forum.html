@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gezginler Forumu - Seyyah-ı Diyar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ortak Menü -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Seyyah-ı Diyar &trade;</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="index.html#destinations-section">Keşfedilecek Yerler</a></li>
+                <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+                <li><a href="login.html">Giriş Yap</a></li>
+                <li><a href="register.html">Kayıt Ol</a></li>
+                <li><a href="gezginler-forum.html">Gezginler Forumu</a></li> <!-- Gezginler Forumu bağlantısı -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Ana içerik -->
+    <main class="register-container">
+        <h2>Gezginler Paylaşım Formu</h2>
+        <form class="register-form" id="yorumFormu">
+            <div class="form-group">
+                <label for="name">Adınız Soyadınız:</label>
+                <input type="text" id="name" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="location">Gidilen Yer:</label>
+                <input type="text" id="location" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="experience">Deneyiminizi Anlatın:</label>
+                <textarea id="experience" rows="6" required></textarea>
+            </div>
+    
+            <div class="form-group">
+                <label for="date">Tarih:</label>
+                <input type="date" id="date" required>
+            </div>
+    
+            <button type="submit">Gönder</button>
+        </form>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Seyyah-ı Diyar. Tüm hakları saklıdır.</p>
+    </footer>
+    
+    <script>
+        document.getElementById("yorumFormu").addEventListener("submit", function(e) {
+            e.preventDefault();
+    
+            const yorum = {
+                name: document.getElementById("name").value,
+                location: document.getElementById("location").value,
+                experience: document.getElementById("experience").value,
+                date: document.getElementById("date").value
+            };
+    
+            let yorumlar = JSON.parse(localStorage.getItem("gezginYorumlari")) || [];
+            yorumlar.push(yorum);
+            localStorage.setItem("gezginYorumlari", JSON.stringify(yorumlar));
+    
+            alert("Yorumunuz başarıyla kaydedildi!");
+            this.reset();
+        });
+    </script>
+    
+    </body>
+    </html>
