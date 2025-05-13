@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol - Türkiye'nin Güzellikleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+            <h1>Seyyah-ı Diyar</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="index.html#destinations-section">Keşfedilecek Yerler</a></li>
+                <li><a href="gezginler-forum.html">Gezginler Forumu</a></li>
+                <li><a href="gezi-plani-ekle.html">Plan Ekle</a></li>
+                <li><a href="kayitli-planlar.html">Planlarım</a></li> <li><a href="adam-asmaca.html">Adam Asmaca</a></li>
+                <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+                <li><a href="login.html">Giriş Yap</a></li>
+                </ul>
+        </nav>
+    </header>
+    
+    <main class="register-container">
+        <h2>Kayıt Ol</h2>
+        <form class="register-form" onsubmit="kullaniciKaydet(event)">
+            <div class="form-group">
+                <label for="username">Kullanıcı Adı:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">E-posta:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Şifre:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm-password">Şifre Tekrar:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            
+            <button type="submit">Kayıt Ol</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Türkiye'nin Güzellikleri. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        function kullaniciKaydet(e) {
+            e.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+            if (password !== confirmPassword) {
+                alert("Şifreler uyuşmuyor!");
+                return;
+            }
+
+            // Kullanıcı nesnesi oluşturuluyor
+            const user = {
+                username: username,
+                email: email,
+                password: password
+            };
+
+            // localStorage'a kaydediliyor
+            localStorage.setItem("kullanici", JSON.stringify(user));
+
+            alert("Kayıt başarılı!");
+
+            // Formu sıfırla
+            document.querySelector(".register-form").reset();
+        }
+    </script>
+</body>
+</html>
