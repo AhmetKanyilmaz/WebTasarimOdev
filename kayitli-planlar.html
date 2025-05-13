@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaydedilmiş Gezi Planlarım - Seyyah-ı Diyar</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .table-container {
+            overflow-x: auto; /* Küçük ekranlarda tablo kaydırılabilir olsun */
+            margin: 2rem auto;
+            padding: 0 1rem; /* Sayfanın kenarlarına yapışmasın */
+            max-width: 1100px; /* Tablo genişliğini sınırlar */
+        }
+        #planlarTablosu {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        #planlarTablosu th, #planlarTablosu td {
+            border: 1px solid #ddd;
+            padding: 0.8rem 1rem; /* Hücre içi boşluk */
+            text-align: left;
+            font-size: 0.9rem; 
+            vertical-align: top; /* Uzun içeriklerde hizalama */
+        }
+        #planlarTablosu th {
+            background-color: #34495e; 
+            color: white;
+            font-weight: bold;
+        }
+        #planlarTablosu tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        #planlarTablosu tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        #planYokMesaji { /* Plan yoksa gösterilecek mesaj */
+            text-align: center;
+            font-size: 1.1rem;
+            color: #555;
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        .plan-sil-btn { /* Silme butonu stili */
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .plan-sil-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Seyyah-ı Diyar</h1>
+            </div>
+           <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="index.html#destinations-section">Keşfedilecek Yerler</a></li>
+                <li><a href="gezginler-forum.html">Gezginler Forumu</a></li>
+                <li><a href="gezi-plani-ekle.html">Plan Ekle</a></li>
+                <li><a href="kayitli-planlar.html">Planlarım</a></li> <li><a href="adam-asmaca.html">Adam Asmaca</a></li>
+                <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+                <li><a href="login.html">Giriş Yap</a></li>
+                </ul>
+        </nav>
+    </header>
+
+    <main class="register-container"> <h2>Kaydedilmiş Gezi Planlarım</h2>
+        <div class="table-container">
+            <table id="planlarTablosu">
+                <thead>
+                    <tr>
+                        <th>Gidilecek Yer</th>
+                        <th>Başlangıç</th>
+                        <th>Bitiş</th>
+                        <th>Konaklama</th>
+                        <th>Aktiviteler</th>
+                        <th>Bütçe (₺)</th>
+                        <th>Notlar</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody id="planlarTabloGovdesi">
+                    </tbody>
+            </table>
+            <div id="planYokMesaji" style="display:none;">
+                <p>Henüz kaydedilmiş gezi planı bulunmamaktadır.</p>
+                <p><a href="gezi-plani-ekle.html">Yeni bir plan eklemek için tıklayın.</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Seyyah-ı Diyar. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="myscript.js"></script>
+</body>
+</html>

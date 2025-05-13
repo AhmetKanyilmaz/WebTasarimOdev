@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap - Seyyah-ı Diyar</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <!-- Header Bölümü -->
+    <header>
+        <nav>
+            <div class="logo">
+            <h1>Seyyah-ı Diyar</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="index.html#destinations-section">Keşfedilecek Yerler</a></li>
+                <li><a href="gezginler-forum.html">Gezginler Forumu</a></li>
+                <li><a href="gezi-plani-ekle.html">Plan Ekle</a></li>
+                <li><a href="kayitli-planlar.html">Planlarım</a></li> <li><a href="adam-asmaca.html">Adam Asmaca</a></li>
+                <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+                <li><a href="login.html">Giriş Yap</a></li>
+                </ul>
+        </nav>
+    </header>
+
+    <!-- Ana İçerik -->
+    <main>
+        <div class="login-container">
+            <div class="login-header">
+                <h1>Giriş Yap</h1>
+                <p>Seyyah-ı Diyar'a hoş geldiniz!</p>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-posta</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError">Geçerli bir e-posta adresi giriniz.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Şifre</label>
+                    <input type="password" id="password" name="password" required>
+                    <div class="error-message" id="passwordError">Şifreniz en az 6 karakter olmalıdır.</div>
+                </div>
+
+                <button type="submit" class="login-button">Giriş Yap</button>
+            </form>
+
+            <div class="login-footer">
+                <p>Hesabınız yok mu? <a href="register.html">Kayıt Ol</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Bölümü -->
+    <footer>
+        <p>&copy; 2025 Seyyah-ı Diyar. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            
+            // Form doğrulama
+            let isValid = true;
+            
+            if (!email.includes('@')) {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+            
+            if (password.length < 6) {
+                passwordError.style.display = 'block';
+                isValid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+            
+            if (isValid) {
+                // Burada giriş işlemleri yapılacak
+                alert('Giriş başarılı!');
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html> 

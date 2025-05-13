@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seyyah-ı Diyar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Bölümü -->
+    <header>
+        <nav>
+            <div class="logo">
+            <h1>Seyyah-ı Diyar</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="index.html#destinations-section">Keşfedilecek Yerler</a></li>
+                <li><a href="gezginler-forum.html">Gezginler Forumu</a></li>
+                <li><a href="gezi-plani-ekle.html">Plan Ekle</a></li>
+                <li><a href="kayitli-planlar.html">Planlarım</a></li> <li>
+                <li><a href="adam-asmaca.html">Adam Asmaca</a></li>
+                <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+                <li><a href="login.html">Giriş Yap</a></li>
+                </ul>
+        </nav>
+    </header>
+    
+    
+
+    <!-- Ana İçerik -->
+    <main>
+        <!-- Türkiye Haritası Bölümü -->
+        <body>
+            <img src="images\Turkey.png" usemap="#takimLogolarMap" alt="Takım Logoları Haritası" width="1600" height="900">
+
+        
+            <map name="takimLogolarMap">
+                <area target="_blank" alt="Muğla" title="Muğla" href="https://tr.wikipedia.org/wiki/Akyaka,_Ula" coords="127,533,280,645" shape="rect">
+                <area target="_blank" alt="İzmir" title="İzmir" href="https://tr.wikipedia.org/wiki/%C5%9Eirince" coords="119,293,206,468,40,440" shape="poly">
+                <area target="_blank" alt="Tokat" title="Tokat" href="https://tr.wikipedia.org/wiki/Tokat_(il)" coords="836,154,925,183,823,264,765,216" shape="poly">
+                <area target="_blank" alt="Nevşehir" title="Nevşehir" href="https://tr.wikipedia.org/wiki/Kapadokya" coords="699,324,669,399,720,433,743,359" shape="poly">
+                <area target="_blank" alt="Adıyaman" title="Adıyaman" href="https://tr.wikipedia.org/wiki/Nemrut_Da%C4%9F%C4%B1" coords="1058,440,1025,514,931,495" shape="poly">
+                <area target="_blank" alt="Trabzon" title="Trabzon" href="https://tr.wikipedia.org/wiki/Uzung%C3%B6l" coords="1034,118,1088,168,1142,135" shape="poly">
+                <area target="_blank" alt="Bolu" title="Bolu" href="https://tr.wikipedia.org/wiki/Yedig%C3%B6ller_Mill%C3%AE_Park%C4%B1" coords="484,141,456,161,448,180,410,175,388,200,395,231,422,213,455,217,500,209,518,204,530,176,518,146" shape="poly">
+                <area target="_blank" alt="Antalya " title="Antalya " href="https://tr.wikipedia.org/wiki/K%C3%B6pr%C3%BCl%C3%BC_Kanyon" coords="265,654,297,612,321,572,352,552,389,557,433,540,513,564,526,610,540,644,540,680,386,603,366,659,305,672,285,668" shape="poly">
+                <area target="_blank" alt="Karabük" title="Karabük" href="https://tr.wikipedia.org/wiki/Safranbolu" coords="508,129,525,108,554,90,573,87,569,112,579,144,542,158" shape="poly">
+                <area target="_blank" alt="Pamukkale" title="Pamukkale" href="https://tr.wikipedia.org/wiki/Pamukkale" coords="234,452,249,491,240,546,273,582,302,532,321,495,333,436,282,436,247,439" shape="poly">
+            
+            </map>
+    
+                  
+            </map>
+        </body>
+
+        <div class="map-guide">
+            <p>Detaylı bilgi için ilgili şehrin üzerine tıklayınız.</p>
+        </div>
+
+    
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const svgObject = document.getElementById('turkey-map');
+                const mapContainer = document.querySelector('.map-container');
+                const tooltip = document.createElement('div');
+                tooltip.className = 'city-tooltip';
+                mapContainer.appendChild(tooltip);
+
+                // Şehirlerin listesi ve özellikleri
+                const cities = {
+                    'TR-48': { // Muğla
+                        link: 'https://tr.wikipedia.org/wiki/Akyaka,_Ula',
+                        title: 'Akyaka'
+                    },
+                    'TR-20': { // Denizli
+                        link: 'https://tr.wikipedia.org/wiki/Pamukkale',
+                        title: 'Pamukkale'
+                    },
+                    'TR-14': { // Bolu
+                        link: 'https://tr.wikipedia.org/wiki/Yedigöller_Millî_Parkı',
+                        title: 'Yedigöller'
+                    },
+                    'TR-50': { // Nevşehir
+                        link: 'https://tr.wikipedia.org/wiki/Kapadokya',
+                        title: 'Kapadokya'
+                    },
+                    'TR-61': { // Trabzon
+                        link: 'https://tr.wikipedia.org/wiki/Uzungöl',
+                        title: 'Uzungöl'
+                    },
+                    'TR-07': { // Antalya
+                        link: 'https://tr.wikipedia.org/wiki/Köprülü_Kanyon_Millî_Parkı',
+                        title: 'Köprülü Kanyon'
+                    },
+                    'TR-64': { // Uşak
+                        link: 'https://tr.wikipedia.org/wiki/Ulubey_Kanyonu',
+                        title: 'Ulubey Kanyonu'
+                    },
+                    'TR-35': { // İzmir
+                        link: 'https://tr.wikipedia.org/wiki/Şirince',
+                        title: 'Şirince'
+                    },
+                    'TR-78': { // Karabük
+                        link: 'https://tr.wikipedia.org/wiki/Safranbolu',
+                        title: 'Safranbolu'
+                    },
+                    'TR-02': { // Adıyaman
+                        link: 'https://tr.wikipedia.org/wiki/Nemrut_Dağı',
+                        title: 'Nemrut Dağı'
+                    }
+                };
+
+                svgObject.addEventListener('load', function() {
+                    const svgDoc = svgObject.contentDocument;
+                    
+                    // Her şehir için olayları ekle
+                    for (let cityId in cities) {
+                        let path = svgDoc.getElementById(cityId);
+                        if (path) {
+                            // Stil ve sınıf ekle
+                            path.classList.add('city-highlight');
+                            
+                            // Tıklama olayı
+                            path.addEventListener('click', function() {
+                                window.open(cities[cityId].link, '_blank');
+                            });
+
+                            // Hover olayları
+                            path.addEventListener('mousemove', function(e) {
+                                const rect = svgObject.getBoundingClientRect();
+                                const x = e.clientX - rect.left;
+                                const y = e.clientY - rect.top;
+                                
+                                tooltip.style.display = 'block';
+                                tooltip.style.left = (x + 10) + 'px';
+                                tooltip.style.top = (y + 10) + 'px';
+                                tooltip.textContent = cities[cityId].title;
+                            });
+
+                            path.addEventListener('mouseout', function() {
+                                tooltip.style.display = 'none';
+                            });
+                        }
+                    }
+                });
+            });
+        </script>
+
+        <!-- Keşfedilecek Yerler -->
+        <section id="destinations-section" class="destinations">
+            <h2>Keşfedilecek Yerler</h2>
+            <div class="destination-list">
+                <li id="pamukkale" class="destination-item">
+                    <h3>Pamukkale &hearts;</h3>
+                    <img src="images/Pamukkale.jpg" alt="Pamukkale">
+                    <p>Doğal travertenleri ve antik kenti ile ünlü olan Pamukkale, UNESCO Dünya Mirası Listesi'nde yer alıyor.</p>
+                    <hr>
+                </li>
+
+                <!-- Yedigöller -->
+                <li id="yedigoller" class="destination-item">
+                    <h3>Yedigöller Milli Parkı &hearts;</h3>
+                    <img src="images\yedigoller.jpg" alt="Yedigöller">
+                    <p>Doğal güzellikleri ve huzurlu atmosferiyle bilinen Yedigöller, özellikle sonbahar aylarında muhteşem manzaralar sunmaktadır.</p>
+                    <hr>
+                </li>
+
+                <!-- Kapadokya -->
+                <li id="kapadokya" class="destination-item">
+                    <h3>Kapadokya &hearts;</h3>
+                    <img src="images\Kapadokya.jpg" alt="Kapadokya">
+                    <p>Peri bacaları, yeraltı şehirleri ve sıcak hava balonlarıyla ünlü olan Kapadokya<sup>&reg;</sup>, eşsiz bir deneyim sunmaktadır.</p>
+                    <hr>
+                </li>
+
+                <!-- Akyaka -->
+                <li id="akyaka" class="destination-item">
+                    <h3>Muğla Akyaka &hearts;</h3>
+                    <img src="images\akyaka.jpg" alt="Akyaka">
+                    <p>Sakinliği, doğal güzellikleri ve Azmak Nehri ile bilinen Akyaka, huzurlu bir tatil vadediyor.</p>
+                    <hr>
+                </li>
+
+                <!-- Uzungöl -->
+                <li id="uzungol" class="destination-item">
+                    <h3>Uzungöl &hearts;</h3>
+                    <img src="images\uzungol.jpg" alt="Uzungöl">
+                    <p>Doğal güzellikleri ve yayla turizmiyle ünlü olan Uzungöl<sup>&trade;</sup>, eşsiz manzarasıyla ziyaretçilerini büyülüyor.</p>
+                    <hr>
+                </li>
+
+                <!-- Köprülü Kanyon -->
+                <li id="koprulu" class="destination-item">
+                    <h3>Köprülü Kanyon &hearts;</h3>
+                    <img src="images\koprulu-kanyon.jpg" alt="Köprülü Kanyon">
+                    <p>Doğal güzellikleri ve rafting gibi aktiviteleriyle ünlü olan Köprülü Kanyon, macera tutkunlarını bekliyor.</p>
+                    <hr>
+                </li>
+
+                <!-- Ulubey Kanyonu -->
+                <li id="ulubey" class="destination-item">
+                    <h3>Ulubey Kanyonu &hearts;</h3>
+                    <img src="images\Ulubey Kanyonu (1) kopya.jpg" alt="Ulubey Kanyonu">
+                    <p>Dünyanın en uzun ikinci kanyonu olan Ulubey<sup>2</sup>, muhteşem manzarasıyla görenleri hayran bırakıyor.</p>
+                    <hr>
+                </li>
+
+                <!-- Şirince -->
+                <li id="sirince" class="destination-item">
+                    <h3>Şirince &hearts;</h3>
+                    <img src="images\sirince.jpg" alt="Şirince">
+                    <p>Tarihi dokusu, şarapları ve doğal güzellikleriyle ünlü Şirince, zamanda yolculuğa çıkarıyor.</p>
+                    <hr>
+                </li>
+
+                <!-- Safranbolu -->
+                <li id="safranbolu" class="destination-item">
+                    <h3>Safranbolu &hearts;</h3>
+                    <img src="images\safranbolu.jpg" alt="Safranbolu">
+                    <p>Tarihi evleri ve Osmanlı mimarisiyle UNESCO Dünya Mirası Listesi'nde yer alan Safranbolu<sup>&copy;</sup>, kültür turizminin önemli merkezlerinden.</p>
+                    <hr>
+                </li>
+
+                <!-- Nemrut -->
+                <li id="nemrut" class="destination-item">
+                    <h3>Nemrut Dağı &hearts;</h3>
+                    <img src="images\nemrut.jpg" alt="Nemrut Dağı">
+                    <p>Tarihi kalıntıları ve eşsiz gün doğumu manzarasıyla ünlü olan Nemrut Dağı, binlerce yıllık tarihe ev sahipliği yapıyor.</p>
+                    <hr>
+                </li>
+            </div>
+
+            <section id="gezgin-yorumlari" class="register-container">
+                <h2>Gezgin Yorumları</h2>
+                <p>💬 Yorum yapmak için <a href="gezginler-forum.html">Gezginler Forumu</a> sayfasını ziyaret edebilirsiniz.</p>
+                <div id="yorum-listesi"></div>
+            </section>
+    
+
+    </section>
+    
+    <script>
+        function yorumlariGoster() {
+            const yorumlar = JSON.parse(localStorage.getItem("gezginYorumlari")) || [];
+            const yorumListesi = document.getElementById("yorum-listesi");
+            yorumListesi.innerHTML = "";
+    
+            if (yorumlar.length === 0) {
+                yorumListesi.innerHTML = "<p>Henüz yorum yapılmamış.</p>";
+            } else {
+                yorumlar.forEach((yorum, index) => {
+                    const yorumDiv = document.createElement("div");
+                    yorumDiv.className = "form-group";
+                    yorumDiv.innerHTML = `
+                        <h4>${yorum.name} - ${yorum.location} (${yorum.date})</h4>
+                        <p>${yorum.experience}</p>
+                        <button onclick="yorumuSil(${index})">Sil</button>
+                        <hr>
+                    `;
+                    yorumListesi.appendChild(yorumDiv);
+                });
+            }
+        }
+    
+        function yorumuSil(index) {
+            let yorumlar = JSON.parse(localStorage.getItem("gezginYorumlari")) || [];
+            yorumlar.splice(index, 1); // ilgili indexteki yorumu sil
+            localStorage.setItem("gezginYorumlari", JSON.stringify(yorumlar));
+            yorumlariGoster(); // yorumları güncelle
+        }
+    
+        // Sayfa yüklendiğinde yorumları göster
+        document.addEventListener("DOMContentLoaded", yorumlariGoster);
+    </script>
+    
+    
+    <footer>
+        <p>&copy; 2025 Seyyah-ı Diyar. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('travelForm');
+        const commentsList = document.getElementById('commentsList');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Yeni yorum oluştur
+            const comment = document.createElement('div');
+            comment.className = 'comment';
+
+            const header = document.createElement('div');
+            header.className = 'comment-header';
+            header.textContent = `${form.name.value} ${form.surname.value}`;
+
+            const location = document.createElement('div');
+            location.className = 'comment-location';
+            location.textContent = `Gezilen Yer: ${form.location.value}`;
+
+            const text = document.createElement('div');
+            text.className = 'comment-text';
+            text.textContent = form.experience.value;
+
+            // Yorumu sayfaya ekle
+            comment.appendChild(header);
+            comment.appendChild(location);
+            comment.appendChild(text);
+            commentsList.insertBefore(comment, commentsList.firstChild);
+
+            // Formu temizle
+            form.reset();
+        });
+    });
+    </script>
+</body>
+</html> 
